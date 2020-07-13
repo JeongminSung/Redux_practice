@@ -46,6 +46,12 @@ function reducer(state = initialState, action) {
         ...state, //기존의 상태값은 유지하되
         counter: state.counter + 1, //기존 상태의 카운터 값을 읽어서 1을 더함
       };
+    case DECREASE:
+      return {
+        //반환
+        ...state, //기존의 상태값은 유지하되
+        counter: state.counter - 1, //기존 상태의 카운터 값을 읽어서 1을 더함
+      };
     case CHANGE_TEXT:
       return {
         ...state,
@@ -55,6 +61,7 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         list: state.list.concat(action.item),
+        //배열의 불변성을 위하여 concat으로 접근해야한다.
       };
     default:
       return state;
@@ -83,3 +90,5 @@ store.dispatch(addToList({ id: 1, text: "와우" }));
 
 //이 명령어를 정의해주고 console에 store를 적으면 store안의 내용물을 볼 수 있다.
 window.store = store;
+// window.unsubscribe = unsubscribe;
+// unsubscribe();
